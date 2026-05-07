@@ -6,7 +6,7 @@
 import { getDB } from "../database/db";
 import { addLivro, deleteLivro, getLivroById, getLivros, updateLivro } from "../database/repositories/livroRepository";
 
-export const testeLivro = async () => {
+export const testeLivros = async () => {
     console.log("\nAdicionando livro 1")
     await addLivro("Teste", "Teste", 1000, "Teste", 0, "BOSTA", "lido", null, 0)
 
