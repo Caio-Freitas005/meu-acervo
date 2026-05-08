@@ -17,13 +17,16 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": ".src/assets/adaptive-icon.png",
+        "foregroundImage": "./src/assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
       "edgeToEdgeEnabled": true
     },
     "web": {
-      "favicon": ".src/assets/favicon.png"
-    }
+      "favicon": "./src/assets/favicon.png"
+    },
+    "plugins": [
+      "expo-sqlite"
+    ]
   }
 }
