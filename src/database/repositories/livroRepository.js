@@ -12,12 +12,12 @@ favoritado BOOLEAN
 */
 
 const addLivro = async (titulo, autor, anoPublicacao, uriCapa,
-                        avaliacao, opiniao, status, ultimaPaginaLida, favoritado) => {
+                        avaliacao, opiniao, status, ultimaPaginaLida) => {
     try {   
         const db = await getDB()
         await db.runAsync(
-            'INSERT INTO livros (titulo, autor, ano_publicacao, uri_capa, avaliacao, opiniao, status, ultima_pagina_lida, favoritado) VALUES (?,?,?,?,?,?,?,?,?)',
-            [titulo, autor, anoPublicacao, uriCapa, avaliacao, opiniao, status, ultimaPaginaLida, favoritado]
+            'INSERT INTO livros (titulo, autor, ano_publicacao, uri_capa, avaliacao, opiniao, status, ultima_pagina_lida) VALUES (?,?,?,?,?,?,?,?)',
+            [titulo, autor, anoPublicacao, uriCapa, avaliacao, opiniao, status, ultimaPaginaLida]
         )
         console.log("Inseriu livro com sucesso.")
     } catch (error) {
@@ -49,12 +49,12 @@ const getLivros = async () => {
 }
 
 const updateLivro = async (id,titulo, autor, anoPublicacao, uriCapa,
-                        avaliacao, opiniao, status, ultimaPaginaLida, favoritado) => {
+                        avaliacao, opiniao, status, ultimaPaginaLida) => {
     try {
         const db = await getDB()
         await db.runAsync(
-            'UPDATE livros SET titulo = ?, autor = ?, ano_publicacao = ?, uri_capa = ?, avaliacao = ?, opiniao = ?, status = ?, ultima_pagina_lida = ?, favoritado = ? WHERE id_livro = ?',
-            [titulo, autor, anoPublicacao, uriCapa, avaliacao, opiniao, status, ultimaPaginaLida, favoritado, id]
+            'UPDATE livros SET titulo = ?, autor = ?, ano_publicacao = ?, uri_capa = ?, avaliacao = ?, opiniao = ?, status = ?, ultima_pagina_lida = ? WHERE id_livro = ?',
+            [titulo, autor, anoPublicacao, uriCapa, avaliacao, opiniao, status, ultimaPaginaLida, id]
         )
     } catch (error) {
         console.log("Erro ao atualizar livro:", error)
