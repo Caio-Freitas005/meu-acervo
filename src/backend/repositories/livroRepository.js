@@ -8,16 +8,16 @@ avaliacao INTEGER CHECK(avaliacao BETWEEN 0 AND 10),
 opiniao TEXT,
 status TEXT CHECK(status IN ('lido', 'lendo')),
 ultima_pagina_lida INTEGER,
-favoritado BOOLEAN 
+favoritado INTEGER CHECK(favoritado IN (0, 1))
 */
 
 const addLivro = async (titulo, autor, anoPublicacao, uriCapa,
-                        avaliacao, opiniao, status, ultimaPaginaLida) => {
+                        avaliacao, opiniao, status, ultimaPaginaLida, favoritado) => {
     try {   
         const db = await getDB()
         await db.runAsync(
-            'INSERT INTO livros (titulo, autor, ano_publicacao, uri_capa, avaliacao, opiniao, status, ultima_pagina_lida) VALUES (?,?,?,?,?,?,?,?)',
-            [titulo, autor, anoPublicacao, uriCapa, avaliacao, opiniao, status, ultimaPaginaLida]
+            'INSERT INTO livros (titulo, autor, ano_publicacao, uri_capa, avaliacao, opiniao, status, ultima_pagina_lida, favoritado) VALUES (?,?,?,?,?,?,?,?,?)',
+            [titulo, autor, anoPublicacao, uriCapa, avaliacao, opiniao, status, ultimaPaginaLida, favoritado]
         )
         console.log("Inseriu livro com sucesso.")
     } catch (error) {
@@ -49,12 +49,12 @@ const getLivros = async () => {
 }
 
 const updateLivro = async (id,titulo, autor, anoPublicacao, uriCapa,
-                        avaliacao, opiniao, status, ultimaPaginaLida) => {
+                        avaliacao, opiniao, status, ultimaPaginaLida, favoritado) => {
     try {
         const db = await getDB()
         await db.runAsync(
-            'UPDATE livros SET titulo = ?, autor = ?, ano_publicacao = ?, uri_capa = ?, avaliacao = ?, opiniao = ?, status = ?, ultima_pagina_lida = ? WHERE id_livro = ?',
-            [titulo, autor, anoPublicacao, uriCapa, avaliacao, opiniao, status, ultimaPaginaLida, id]
+            'UPDATE livros SET titulo = ?, autor = ?, ano_publicacao = ?, uri_capa = ?, avaliacao = ?, opiniao = ?, status = ?, ultima_pagina_lida = ?, favoritado = ? WHERE id_livro = ?',
+            [titulo, autor, anoPublicacao, uriCapa, avaliacao, opiniao, status, ultimaPaginaLida, favoritado, id]
         )
     } catch (error) {
         console.log("Erro ao atualizar livro:", error)
