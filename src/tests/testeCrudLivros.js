@@ -3,8 +3,8 @@
 ! Arquivo temporário, remover quando confirmar funcionalidade de banco
 */
 
-import { getDB } from "../database/db";
-import { addLivro, deleteLivro, getLivroById, getLivros, updateLivro } from "../database/repositories/livroRepository";
+import { getDB } from "../backend/db";
+import { addLivro, deleteLivro, getLivroById, getLivros, updateLivro } from "../backend/repositories/livroRepository.js";
 
 export const testeLivros = async () => {
     console.log("\nAdicionando livro 1")

@@ -3,7 +3,7 @@ import { StyleSheet, View, Text } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import { testeLivros } from './tests/testeCrudLivros';
-import { getDB } from './database/db';
+import { getDB } from './backend/db';
 import Home from './screens/Home/index'
 import Acervo from './screens/Acervo/index'
 import TestesNav from './tests/screens/TestesNav/index'
