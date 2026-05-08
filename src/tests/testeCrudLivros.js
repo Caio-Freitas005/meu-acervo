@@ -48,10 +48,6 @@ export const limparLivros = async () => {
         await db.runAsync(`DELETE FROM livros`)
         await db.runAsync(`DELETE FROM sqlite_sequence WHERE name='livros'`)
         console.log("Livros limpados")
-
-        if (confirm("Executar drop em tabelas?")) {
-            await db.runAsync(`DROP TABLE livros`)
-        }
     } catch (error) {
         console.log(error)
     }
