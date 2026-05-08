@@ -7,6 +7,7 @@ import { getDB } from './database/db';
 import Home from './screens/Home/index'
 import Acervo from './screens/Acervo/index'
 import TestesNav from './tests/screens/TestesNav/index'
+import { testeAnotacoes } from './tests/testeCrudAnotacoes';
 
 const Tab = createBottomTabNavigator();
 
@@ -18,7 +19,8 @@ export default function App() {
       try {
         await getDB(); 
         await testeLivros(); 
-        
+        await testeAnotacoes();
+
         setBancoPronto(true);
       } catch (error) {
         console.error("Erro fatal ao iniciar:", error);

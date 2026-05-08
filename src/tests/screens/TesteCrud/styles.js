@@ -46,7 +46,7 @@ export const styles = StyleSheet.create({
     backgroundColor: '#6200ee', 
     paddingVertical: 16,
     borderRadius: 10,
-    marginBottom: 50,
+    marginBottom: 5,
     alignItems: 'center',
   },
   buttonText: {

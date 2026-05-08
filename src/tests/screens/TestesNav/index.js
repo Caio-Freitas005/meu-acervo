@@ -1,13 +1,13 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
-import TesteCrudLivros from '../TesteCrudLivros';
+import TesteCrud from '../TesteCrud';
 
 const Tab = createBottomTabNavigator()
 
 export default function TestesNav() {
   return (
       <Tab.Navigator>
-        <Tab.Screen name='Banco' component={TesteCrudLivros} />
+        <Tab.Screen name='Banco' component={TesteCrud} />
       </Tab.Navigator>
   );
 }
