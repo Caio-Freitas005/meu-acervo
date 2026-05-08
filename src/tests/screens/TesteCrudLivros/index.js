@@ -3,7 +3,7 @@ import { styles } from './styles'
 
 import { testeLivros, limparLivros } from '../../testeCrudLivros';
 
-export default function TestesDeBancoScreen() {
+export default function TesteCrudLivros() {
   return (
     <View style={styles.container}>
 

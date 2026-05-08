@@ -1,15 +1,13 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { NavigationContainer } from '@react-navigation/native';
 
-import { styles } from './styles'
-import TestesDeBancoScreen from '../TestesDeBanco';
+import TesteCrudLivros from '../TesteCrudLivros';
 
 const Tab = createBottomTabNavigator()
 
 export default function TestesNav() {
   return (
       <Tab.Navigator>
-        <Tab.Screen name='Banco' component={TestesDeBancoScreen} />
+        <Tab.Screen name='Banco' component={TesteCrudLivros} />
       </Tab.Navigator>
   );
 }
