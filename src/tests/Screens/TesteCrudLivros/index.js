@@ -1,7 +1,7 @@
 import { View, Text, TouchableOpacity } from 'react-native';
 import { styles } from './styles'
 
-import { testeLivros, limparBanco } from '../../TestesDeBanco';
+import { testeLivros, limparLivros } from '../../testeCrudLivros';
 
 export default function TestesDeBancoScreen() {
   return (

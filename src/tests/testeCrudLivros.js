@@ -8,10 +8,10 @@ import { addLivro, deleteLivro, getLivroById, getLivros, updateLivro } from "../
 
 export const testeLivros = async () => {
     console.log("\nAdicionando livro 1")
-    await addLivro("Teste", "Teste", 1000, "Teste", 0, "BOSTA", "lido", null, 0)
+    await addLivro("Teste", "Teste", 1000, "Teste", 0, "BOSTA", "lido", 0)
 
     console.log("\nAdicionando livro 2")
-    await addLivro("Teste 2", "Teste 2", 2000, "Teste", 0, "BOSTA", "lido", null, 0)
+    await addLivro("Teste 2", "Teste 2", 2000, "Teste", 0, "BOSTA", "lido", 0)
 
     console.log("\nPegando livro 1")
     const livro = await getLivroById(1)
@@ -24,7 +24,7 @@ export const testeLivros = async () => {
     }
 
     console.log("\nAtualizando livro 1")
-    await updateLivro(1, "Teste", "Teste Atualizado", 1000, "Teste", 0, "BOSTA", "lido", null, 0)
+    await updateLivro(1, "Teste", "Teste Atualizado", 1000, "Teste", 0, "BOSTA", "lido", 0)
 
     console.log("\nPegando livros")
     livros = await getLivros()
@@ -42,7 +42,7 @@ export const testeLivros = async () => {
     }
 }
 
-export const limparBanco = async () => {
+export const limparLivros = async () => {
     try {
         const db = await getDB()
         await db.runAsync(`DELETE FROM livros`)
