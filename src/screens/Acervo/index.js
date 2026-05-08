@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { View, Text, ActivityIndicator, FlatList} from "react-native";
 import { styles } from "./styles";
-import { getLivros } from "../../backend/repositories/livroRepository";
+import { getLivros } from "../../database/repositories/livroRepository";
 
 export default function Acervo({ navigation }) {
   const [livros, setLivros] = useState([]);
