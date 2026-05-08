@@ -16,8 +16,8 @@ export const initSchema = async (db) => {
 
   // Em caso de erro nos testes com o expo go relacionado a alteração da tabela
   // descomente temporariamente
-  await db.execAsync("DROP TABLE IF EXISTS anotacoes;");
-  await db.execAsync("DROP TABLE IF EXISTS livros;");
+  // await db.execAsync("DROP TABLE IF EXISTS anotacoes;");
+  // await db.execAsync("DROP TABLE IF EXISTS livros;");
 
   await db.execAsync(
     `CREATE TABLE IF NOT EXISTS livros (
