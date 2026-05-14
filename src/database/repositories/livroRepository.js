@@ -48,6 +48,19 @@ const getLivros = async () => {
     }
 }
 
+const getLivrosFavoritados = async () => {
+    try {
+        const db = await getDB()
+
+        return await db.getAllAsync(
+            `SELECT * FROM livros WHERE favoritado = 1`
+        )
+
+    } catch (error) {
+        console.log("Erro ao buscar livros favoritados:", error)
+    }
+}
+
 const updateLivro = async (id,titulo, autor, anoPublicacao, uriCapa,
                         avaliacao, opiniao, status, ultimaPaginaLida, favoritado) => {
     try {
@@ -73,4 +86,4 @@ const deleteLivro = async (id) => {
     }
 }
 
-export {addLivro, getLivroById, getLivros, updateLivro, deleteLivro}
+export {addLivro, getLivroById, getLivros, getLivrosFavoritados, updateLivro, deleteLivro}
