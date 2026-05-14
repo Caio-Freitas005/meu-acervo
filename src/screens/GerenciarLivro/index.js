@@ -1,10 +1,5 @@
 import { useState, useEffect } from "react";
-import {
-  Text,
-  TextInput,
-  TouchableOpacity,
-  ScrollView,
-} from "react-native";
+import { Text, TextInput, TouchableOpacity, ScrollView } from "react-native";
 import { styles } from "./styles";
 import {
   addLivro,
