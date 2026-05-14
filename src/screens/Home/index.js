@@ -1,7 +1,7 @@
-import { View, Text, TouchableOpacity } from 'react-native';
-import { styles } from './styles'
+import { View, Text, TouchableOpacity } from "react-native";
+import { styles } from "./styles";
 
-export default function Home() {
+export default function Home({ navigation }) {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Meu Acervo 📚</Text>
@@ -16,7 +16,13 @@ export default function Home() {
       <TouchableOpacity style={styles.button} activeOpacity={0.8}>
         <Text style={styles.buttonText}>Acessar Meu Acervo</Text>
       </TouchableOpacity>
+      <TouchableOpacity
+        style={styles.button}
+        activeOpacity={0.8}
+        onPress={() => navigation.navigate("GerenciarLivro")}
+      >
+        <Text style={styles.buttonText}>Adicionar novo livro</Text>
+      </TouchableOpacity>
     </View>
   );
 }
-
