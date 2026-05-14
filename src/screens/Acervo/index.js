@@ -1,5 +1,11 @@
 import { useState, useEffect } from "react";
-import { View, Text, ActivityIndicator, FlatList} from "react-native";
+import {
+  View,
+  Text,
+  ActivityIndicator,
+  FlatList,
+  TouchableOpacity,
+} from "react-native";
 import { styles } from "./styles";
 import { getLivros } from "../../database/repositories/livroRepository";
 
@@ -24,7 +30,6 @@ export default function Acervo({ navigation }) {
     return unsubscribe;
   }, [navigation]);
 
-
   return (
     <View style={styles.container}>
       {loading ? (
@@ -42,13 +47,19 @@ export default function Acervo({ navigation }) {
             data={livros}
             keyExtractor={(item) => String(item.id_livro || Math.random())}
             renderItem={({ item }) => (
-              <View style={styles.card}>
-                <View>
-                  <Text>{item.titulo}</Text>
-                  <Text>{item.autor}</Text>
-                  <Text>{item.ano_publicacao}</Text>
+              <TouchableOpacity
+                onPress={() =>
+                  navigation.navigate("GerenciarLivro", { livro: item })
+                }
+              >
+                <View style={styles.card}>
+                  <View>
+                    <Text>{item.titulo}</Text>
+                    <Text>{item.autor}</Text>
+                    <Text>{item.ano_publicacao}</Text>
+                  </View>
                 </View>
-              </View>
+              </TouchableOpacity>
             )}
           />
         </View>
