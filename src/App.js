@@ -1,16 +1,30 @@
 import { useState, useEffect } from 'react';
 import { StyleSheet, View, Text } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { testeLivros } from './tests/testeCrudLivros';
 import { testeAnotacoes } from './tests/testeCrudAnotacoes';
 import { getDB } from './database/db';
 import Home from './screens/Home/index';
 import Acervo from './screens/Acervo/index';
 import Favoritos from './screens/Favoritos/index';
+import GerenciarLivro from './screens/GerenciarLivro';
 import TestesNav from './tests/screens/TestesNav/index';
 
 const Tab = createBottomTabNavigator();
+const Stack = createNativeStackNavigator();
+
+function TabNavigator() {
+  return (
+    <Tab.Navigator>
+      <Tab.Screen name="Home" component={Home} />
+      <Tab.Screen name="Acervo" component={Acervo} />
+      <Tab.Screen name="Favoritos" component={Favoritos} />
+      <Tab.Screen name="Testes" component={TestesNav} />
+    </Tab.Navigator>
+  );
+}
 
 export default function App() {
   const [bancoPronto, setBancoPronto] = useState(false);
@@ -41,12 +55,10 @@ export default function App() {
 
   return (
     <NavigationContainer>
-      <Tab.Navigator>
-        <Tab.Screen name="Home" component={Home} />
-        <Tab.Screen name="Acervo" component={Acervo} />
-        <Tab.Screen name="Favoritos" component={Favoritos} />
-        <Tab.Screen name="Testes" component={TestesNav} />
-      </Tab.Navigator>      
+      <Stack.Navigator>
+        <Stack.Screen name="Principal" component={TabNavigator} options={{ headerShown: false }} />
+        <Stack.Screen name="GerenciarLivro" component={GerenciarLivro} options={{ title: 'Gerenciar' }} />
+      </Stack.Navigator>
     </NavigationContainer>
   );
 }
