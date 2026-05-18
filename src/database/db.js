@@ -24,7 +24,7 @@ export const initSchema = async (db) => {
             id_livro INTEGER PRIMARY KEY AUTOINCREMENT,
             titulo TEXT,
             autor TEXT,
-            ano_publicacao INTEGER CHECK(ano_publicacao < 10000 AND ano_publicacao > 999),
+            ano_publicacao INTEGER,
             uri_capa TEXT,
             avaliacao INTEGER CHECK(avaliacao BETWEEN 0 AND 5),
             opiniao TEXT,
