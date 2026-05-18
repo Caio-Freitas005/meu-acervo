@@ -11,6 +11,7 @@ import { getLivros } from "../../database/repositories/livroRepository";
 
 export default function Acervo({ navigation }) {
   const [livros, setLivros] = useState([]);
+  const [anotacoes, setAnotacoes] = useState([]);
   const [loading, setLoading] = useState(true);
 
   async function carregar() {
@@ -59,10 +60,30 @@ export default function Acervo({ navigation }) {
                     <Text>{item.sinopse}</Text>
                     <Text>{item.ano_publicacao}</Text>
                   </View>
+                  <View>
+                    {/*<FlatList
+                        data={anotacoes}
+                        keyExtractor={(item) => String(item.id_anotacao || Math.random())}
+                        renderItem={({ item }) => (
+                          <TouchableOpacity
+                            onPress={() =>
+                              navigation.navigate("GerenciarAnotacao", { anotacao: item })
+                            }
+                          >
+                          <View>
+                            <Text>{item.titulo_anotacao}</Text>
+                            <Text>{item.texto_anotacao}</Text>
+                          </View>
+                        </View>
+                      </TouchableOpacity>
+                      )}
+                    /> */}
+                  </View>
                 </View>
               </TouchableOpacity>
             )}
           />
+
         </View>
       )}
     </View>
