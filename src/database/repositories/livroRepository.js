@@ -117,6 +117,27 @@ const deleteLivro = async (id) => {
   }
 };
 
+const countLivros = async () => {
+  try {
+    const db = await getDB();
+    const resultado = await db.getAllAsync(`SELECT COUNT(*) AS total FROM livros`);
+    return resultado[0].total;
+  } catch (error) {
+    console.log("Erro ao contar livros:", error);
+  }
+};
+
+const countFavoritos = async () => {
+  try {
+    const db = await getDB();
+    const resultado = await db.getAllAsync(`SELECT COUNT(*) AS total FROM livros WHERE favoritado = 1`);
+    return resultado[0].total;
+  } catch (error) {
+    console.log("Erro ao contar livros:", error);
+  }
+};
+
+
 export {
   addLivro,
   getLivroById,
@@ -124,4 +145,6 @@ export {
   getLivrosFavoritados,
   updateLivro,
   deleteLivro,
+  countLivros,
+  countFavoritos,
 };
