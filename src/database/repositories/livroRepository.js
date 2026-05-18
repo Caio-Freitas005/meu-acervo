@@ -14,6 +14,7 @@ favoritado INTEGER CHECK(favoritado IN (0, 1))
 const addLivro = async (
   titulo,
   autor,
+  sinopse,
   anoPublicacao,
   uriCapa,
   avaliacao,
@@ -25,10 +26,11 @@ const addLivro = async (
   try {
     const db = await getDB();
     await db.runAsync(
-      "INSERT INTO livros (titulo, autor, ano_publicacao, uri_capa, avaliacao, opiniao, status, ultima_pagina_lida, favoritado) VALUES (?,?,?,?,?,?,?,?,?)",
+      "INSERT INTO livros (titulo, autor, sinopse, ano_publicacao, uri_capa, avaliacao, opiniao, status, ultima_pagina_lida, favoritado) VALUES (?,?,?,?,?,?,?,?,?,?)",
       [
         titulo,
         autor,
+        sinopse,
         anoPublicacao,
         uriCapa,
         avaliacao,
@@ -78,6 +80,7 @@ const updateLivro = async (
   id,
   titulo,
   autor,
+  sinopse,
   anoPublicacao,
   uriCapa,
   avaliacao,
@@ -89,10 +92,11 @@ const updateLivro = async (
   try {
     const db = await getDB();
     await db.runAsync(
-      "UPDATE livros SET titulo = ?, autor = ?, ano_publicacao = ?, uri_capa = ?, avaliacao = ?, opiniao = ?, status = ?, ultima_pagina_lida = ?, favoritado = ? WHERE id_livro = ?",
+      "UPDATE livros SET titulo = ?, autor = ?, sinopse = ?, ano_publicacao = ?, uri_capa = ?, avaliacao = ?, opiniao = ?, status = ?, ultima_pagina_lida = ?, favoritado = ? WHERE id_livro = ?",
       [
         titulo,
         autor,
+        sinopse,
         anoPublicacao,
         uriCapa,
         avaliacao,

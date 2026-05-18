@@ -56,6 +56,7 @@ export default function Acervo({ navigation }) {
                   <View>
                     <Text>{item.titulo}</Text>
                     <Text>{item.autor}</Text>
+                    <Text>{item.sinopse}</Text>
                     <Text>{item.ano_publicacao}</Text>
                   </View>
                 </View>

@@ -11,6 +11,7 @@ export default function GerenciarLivro({ navigation, route }) {
 
   const [titulo, setTitulo] = useState("");
   const [autor, setAutor] = useState("");
+  const [sinopse, setSinopse] = useState("");
   const [ano, setAno] = useState("");
   const [status, setStatus] = useState("lendo");
   const [favoritado, setFavoritado] = useState(0);
@@ -19,6 +20,7 @@ export default function GerenciarLivro({ navigation, route }) {
     if (livroParaEditar) {
       setTitulo(livroParaEditar.titulo);
       setAutor(livroParaEditar.autor);
+      setSinopse(livroParaEditar.sinopse);
       setAno(String(livroParaEditar.ano_publicacao));
       setStatus(livroParaEditar.status);
       setFavoritado(livroParaEditar.favoritado);
@@ -37,6 +39,7 @@ export default function GerenciarLivro({ navigation, route }) {
           livroParaEditar.id_livro,
           titulo,
           autor,
+          sinopse,
           parseInt(ano),
           livroParaEditar.uri_capa,
           livroParaEditar.avaliacao,
@@ -49,6 +52,7 @@ export default function GerenciarLivro({ navigation, route }) {
         await addLivro(
           titulo,
           autor,
+          sinopse,
           parseInt(ano),
           "",
           0,
@@ -80,6 +84,12 @@ export default function GerenciarLivro({ navigation, route }) {
         placeholder="Autor"
         value={autor}
         onChangeText={setAutor}
+        style={styles.input}
+      />
+      <TextInput
+        placeholder="Sinopse"
+        value={sinopse}
+        onChangeText={setSinopse}
         style={styles.input}
       />
       <TextInput

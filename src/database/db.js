@@ -23,6 +23,7 @@ export const initSchema = async (db) => {
     `CREATE TABLE IF NOT EXISTS livros (
             id_livro INTEGER PRIMARY KEY AUTOINCREMENT,
             titulo TEXT,
+            sinopse TEXT,
             autor TEXT,
             ano_publicacao INTEGER,
             uri_capa TEXT,
