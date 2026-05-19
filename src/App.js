@@ -10,6 +10,7 @@ import Home from "./screens/Home/index";
 import Acervo from "./screens/Acervo/index";
 import Favoritos from "./screens/Favoritos/index";
 import GerenciarLivro from "./screens/GerenciarLivro";
+import GerenciarAnotacao from "./screens/GerenciarAnotacao";
 import TestesNav from "./tests/screens/TestesNav/index";
 
 const Tab = createBottomTabNavigator();
@@ -64,6 +65,11 @@ export default function App() {
         <Stack.Screen
           name="GerenciarLivro"
           component={GerenciarLivro}
+          options={{ title: "Gerenciar" }}
+        />
+        <Stack.Screen
+          name="GerenciarAnotacao"
+          component={GerenciarAnotacao}
           options={{ title: "Gerenciar" }}
         />
       </Stack.Navigator>
