@@ -8,17 +8,29 @@ import {
 } from "react-native";
 import { styles } from "./styles";
 import { getLivros } from "../../database/repositories/livroRepository";
+import { getAnotacoes } from "../../database/repositories/anotacaoRepository";
 
 export default function Acervo({ navigation }) {
   const [livros, setLivros] = useState([]);
-  const [anotacoes, setAnotacoes] = useState([]);
   const [loading, setLoading] = useState(true);
 
   async function carregar() {
     setLoading(true);
     try {
-      const data = await getLivros();
-      setLivros(data || []);
+      const dataLivros = await getLivros();
+      const dataAnotacoes = await getAnotacoes();
+
+      // Mapeia os livros e anexa as anotações correspondentes a cada um
+      const livrosComAnotacoes = (dataLivros || []).map((livro) => {
+        return {
+          ...livro,
+          anotacoes: (dataAnotacoes || []).filter(
+            (anotacao) => anotacao.id_livro === livro.id_livro
+          ),
+        };
+      });
+
+      setLivros(livrosComAnotacoes);
     } catch (error) {
       console.error(error);
     } finally {
@@ -48,39 +60,62 @@ export default function Acervo({ navigation }) {
             data={livros}
             keyExtractor={(item) => String(item.id_livro || Math.random())}
             renderItem={({ item }) => (
-              <TouchableOpacity
-                onPress={() =>
-                  navigation.navigate("GerenciarLivro", { livro: item })
-                }
-              >
-                <View style={styles.card}>
-                  <View>
-                    <Text>{item.titulo}</Text>
+              <View style={styles.card}>
+                <View>
+                  <TouchableOpacity
+                    onPress={() =>
+                      navigation.navigate("GerenciarLivro", { livro: item })
+                    }
+                  >
+                    <Text style={{ fontWeight: 'bold', fontSize: 16 }}>{item.titulo}</Text>
                     <Text>{item.autor}</Text>
                     <Text>{item.sinopse}</Text>
-                    <Text>{item.ano_publicacao}</Text>
-                  </View>
-                  <View>
-                    {/*<FlatList
-                        data={anotacoes}
-                        keyExtractor={(item) => String(item.id_anotacao || Math.random())}
-                        renderItem={({ item }) => (
-                          <TouchableOpacity
-                            onPress={() =>
-                              navigation.navigate("GerenciarAnotacao", { anotacao: item })
-                            }
-                          >
-                          <View>
-                            <Text>{item.titulo_anotacao}</Text>
-                            <Text>{item.texto_anotacao}</Text>
-                          </View>
-                        </View>
-                      </TouchableOpacity>
-                      )}
-                    /> */}
-                  </View>
+                    <Text>Ano: {item.ano_publicacao}</Text>
+                  </TouchableOpacity>
                 </View>
-              </TouchableOpacity>
+                <View style={{ marginTop: 12 }}>
+
+                  {/* Cabeçalho com botão de adicionar */}
+                  <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
+                    <Text style={{ fontWeight: 'bold' }}>Anotações:</Text>
+                    <TouchableOpacity
+                      onPress={() =>
+                        // Passa o id_livro indicando que é uma criação
+                        navigation.navigate("GerenciarAnotacao", { id_livro: item.id_livro })
+                      }
+                    >
+                      <Text style={{ color: '#4F46E5', fontWeight: 'bold' }}>+ Nova</Text>
+                    </TouchableOpacity>
+                  </View>
+
+                  {item.anotacoes && item.anotacoes.length > 0 ? (
+                    item.anotacoes.map((anotacao) => (
+                      <TouchableOpacity
+                        key={String(anotacao.id_anotacao)}
+                        style={{
+                          backgroundColor: '#f3f4f6',
+                          padding: 8,
+                          borderRadius: 6,
+                          marginBottom: 6
+                        }}
+                        onPress={() =>
+                          // Passa o objeto completo indicando que é uma edição
+                          navigation.navigate("GerenciarAnotacao", { anotacao })
+                        }
+                      >
+                        <Text style={{ fontWeight: 'bold', color: '#4F46E5' }}>
+                          {anotacao.titulo_anotacao}
+                        </Text>
+                        <Text>{anotacao.texto_anotacao}</Text>
+                      </TouchableOpacity>
+                    ))
+                  ) : (
+                    <Text style={{ color: '#9CA3AF', fontStyle: 'italic', fontSize: 13 }}>
+                      Nenhuma anotação para este livro.
+                    </Text>
+                  )}
+                </View>
+              </View>
             )}
           />
 
