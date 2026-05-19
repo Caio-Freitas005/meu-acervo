@@ -48,7 +48,7 @@ export default function GerenciarAnotacao({ navigation, route }) {
     return (
         <ScrollView contentContainerStyle={styles.container}>
             <Text style={styles.title}>
-                {anotacaoParaEditar ? "Editar Anotação" : "Novo Anotação"}
+                {anotacaoParaEditar ? "Editar Anotação" : "Nova Anotação"}
             </Text>
 
             <TextInput
