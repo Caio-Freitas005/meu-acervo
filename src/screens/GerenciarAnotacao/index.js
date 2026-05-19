@@ -8,6 +8,7 @@ import {
 
 export default function GerenciarAnotacao({ navigation, route }) {
     const anotacaoParaEditar = route.params?.anotacao;
+    const idLivroParaCriar = route.params?.id_livro;
 
     const [titulo_anotacao, setTitulo] = useState("");
     const [texto_anotacao, setTexto] = useState("");
@@ -31,13 +32,14 @@ export default function GerenciarAnotacao({ navigation, route }) {
                     anotacaoParaEditar.id_anotacao,
                     titulo_anotacao,
                     texto_anotacao,
+                    anotacaoParaEditar.id_livro,
                 );
 
             } else {
                 await addAnotacao(
                     titulo_anotacao,
-                    texto_anotacao
-
+                    texto_anotacao,
+                    idLivroParaCriar,
                 );
             }
             navigation.goBack();
