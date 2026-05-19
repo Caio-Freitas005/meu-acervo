@@ -44,7 +44,7 @@ const updateAnotacao = async (id, titulo, texto, livro) => {
   try {
     const db = await getDB();
     await db.runAsync(
-      "UPDATE anotacoes SET titulo_anotacao = ?, texto_anotacao = ?, id_livro = ?",
+      "UPDATE anotacoes SET titulo_anotacao = ?, texto_anotacao = ?, id_livro = ? WHERE id_anotacao = ?",
       [titulo, texto, livro, id],
     );
   } catch (error) {
